@@ -113,7 +113,7 @@ header {
 .contain {
   margin: 25px 2% 0 3%;
   display: flex;
-  border: 1px solid indigo;
+  /* border: 1px solid indigo; */
 }
 
 .user_info_container {
@@ -160,6 +160,35 @@ header {
 }
 
 .posts_container {
-  border: 1px solid greenyellow;
+  /* border: 1px solid greenyellow; */
   width: 100%;
+}
+
+.posts_title_container{
+  border-bottom: 1px solid #c1c0c0;
+  margin-left: 25px;
+}
+
+.posts_title_container h1{
+  font-size: 40px;
+}
+
+.posts_row_container{
+  /* border: 1px solid hotpink; */
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 0;
+}
+
+.post{
+  border: 1px solid #c1c0c0;
+  border-radius: 10px;
+  width: 200px;
+  height: 250px;
+}
+
+.post > img{
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
 }
