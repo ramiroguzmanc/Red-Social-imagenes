@@ -109,3 +109,57 @@ header {
 .navbar_profile a:hover {
   cursor: pointer;
 }
+
+.contain {
+  margin: 25px 2% 0 3%;
+  display: flex;
+  border: 1px solid indigo;
+}
+
+.user_info_container {
+  border-right: 1px solid #c1c0c0;
+  text-align: center;
+  width: 30%;
+  padding: 10px;
+}
+
+.user_info_profileimage_container {
+  display: flex;
+  justify-content: center;
+}
+
+.profileimage_container {
+  border: 5px solid #0f3057;
+  display: flex;
+  justify-content: center;
+  border-radius: 100%;
+  width: 250px;
+  height: 250px;
+  margin-bottom: 15px;
+}
+
+.profileimage_container > img {
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+}
+
+.username_title{
+  font-weight: bold;
+  font-size: 26px;
+}
+
+.username_info{
+  /* border: 1px solid gray; */
+  text-align: start;
+  margin-top: 25px;
+}
+
+.username_info h4{
+  margin: 10px 0;
+}
+
+.posts_container {
+  border: 1px solid greenyellow;
+  width: 100%;
+}
