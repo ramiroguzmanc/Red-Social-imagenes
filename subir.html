@@ -11,18 +11,21 @@
         <div class="cargar">
             <h1 class="cargar_title">Subir imagen</h1>
             <form method="GET">
-
+                <br>
                 <input type="text" name="nombre_imagen" id="nombre_imagen" class="cargar_input" placeholder="Nombre de la imagen">
                 <br>
                 <input type="text" name="tags" id="tags" class="cargar_input" placeholder="Tags">
                 <br><br>
-                <label class = "check"><input type="checkbox" name="seleccionador" class="check_b">¿Pública?</label>
+                <label class = "check"><input type="checkbox" name="seleccionador" class="check_b"> ¿Pública?</label>
                 <br>
-                <input type="submit" value="Cargar imagen" class="cargar_button" id="boton_1">
+                <input type="file" value="Cargar imagen" id="boton_1">
                 </form>
         </div>
-        <div class="cargar" id="boton_cargar">
+        <hr>
+        <div class="cargar">
             <form method="GET">
+            <input type="submit" value="Cancelar" class="cargar_button">
+
             <input type="submit" value="Subir" class="cargar_button">
             </form>
         </div>
