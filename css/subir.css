@@ -86,6 +86,9 @@
 
 
 .cargar_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 10px 0 20px 0;
     width: 140px;
     height: 36px;
@@ -98,5 +101,13 @@
     outline: none;
 }
 
+.cargar_button a{
+    text-decoration: none;
+    color: white;
+}
 
+.cargar_buttons_container{
+    display: flex;
+    justify-content: space-around;
+}
 

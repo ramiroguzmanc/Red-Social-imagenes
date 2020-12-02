@@ -1,35 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/subir.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/subir.css" />
     <title>Subir imagen</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="cargar">
-            <h1 class="cargar_title">Subir imagen</h1>
-            <form method="GET">
-                <br>
-                <input type="text" name="nombre_imagen" id="nombre_imagen" class="cargar_input" placeholder="Nombre de la imagen">
-                <br>
-                <input type="text" name="tags" id="tags" class="cargar_input" placeholder="Tags">
-                <br><br>
-                <label class = "check"><input type="checkbox" name="seleccionador" class="check_b"> ¿Pública?</label>
-                <br>
-                <input type="file" value="Cargar imagen" id="boton_1">
-                </form>
-        </div>
-        <hr>
-        <div class="cargar">
-            <form method="GET">
-            <input type="submit" value="Cancelar" class="cargar_button">
-
-            <input type="submit" value="Subir" class="cargar_button">
-            </form>
-        </div>
+      <div class="cargar">
+        <h1 class="cargar_title">Subir imagen</h1>
+        <form method="GET">
+          <br />
+          <input
+            type="text"
+            name="nombre_imagen"
+            id="nombre_imagen"
+            class="cargar_input"
+            placeholder="Nombre de la imagen"
+          />
+          <br />
+          <input
+            type="text"
+            name="tags"
+            id="tags"
+            class="cargar_input"
+            placeholder="Tags"
+          />
+          <input type="file" value="Cargar imagen" id="boton_1" />
+          <br /><br />
+          <label class="check"
+            ><input type="checkbox" name="seleccionador" class="check_b" />
+            ¿Pública?</label
+          >
+          <br />
+          <hr />
+          <div class="cargar_buttons_container">
+            <div class="cargar_button">
+              <a href="home.html">Cancelar</a>
+            </div>
+            <div class="cargar_button">
+              <a href="#">Subir</a>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-    
-</body>
+  </body>
 </html>
