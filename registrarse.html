@@ -30,7 +30,12 @@
         <div class="fila">
           <div class="mediacelda">
             <label>Correo electrónico</label
-            ><input type="email" name="email" class="elemento" />
+            ><input
+              type="email"
+              name="email"
+              class="elemento"
+              placeholder="Correo electrónico"
+            />
           </div>
           <div class="mediacelda">
             <label>Fecha de nacimiento</label
@@ -42,7 +47,7 @@
             <input
               type="text"
               name="username"
-              placeholder="username"
+              placeholder="Username"
               class="elemento"
             />
           </div>
@@ -57,15 +62,38 @@
         </div>
         <div class="radio">
           Sexo:
-          <span><label>Hombre</label><input type="radio" name="nombre" /></span>
-          <span><label>Mujer</label><input type="radio" name="nombre" /></span>
-          <span><label>Otro</label><input type="radio" name="nombre" /></span>
+          <span
+            ><label for="sexohombre" class="radio_option">Hombre</label
+            ><input
+              type="radio"
+              name="nombre"
+              id="sexohombre"
+              class="radio_option"
+          /></span>
+          <span
+            ><label for="sexomujer" class="radio_option">Mujer</label
+            ><input
+              type="radio"
+              name="nombre"
+              id="sexomujer"
+              class="radio_option"
+          /></span>
+          <span
+            ><label for="sexootro" class="radio_option">Otro</label
+            ><input
+              type="radio"
+              name="nombre"
+              id="sexootro"
+              class="radio_option"
+          /></span>
         </div>
         <div class="radio">
           <button>Registrarse</button>
         </div>
       </form>
-      <p class="iniciar">¿Tienes una cuenta? <a href="index.html">Iniciar sesión</a></p>
+      <p class="iniciar">
+        ¿Tienes una cuenta? <a href="index.html">Iniciar sesión</a>
+      </p>
     </div>
   </body>
 </html>
