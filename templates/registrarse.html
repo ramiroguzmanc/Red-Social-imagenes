@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Registro</title>
-    <link rel="stylesheet" type="text/css" href="css/registrarse.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/registrarse.css') }}" />
   </head>
   <body>
     <div id="contenedor">
@@ -92,7 +92,7 @@
         </div>
       </form>
       <p class="iniciar">
-        ¿Tienes una cuenta? <a href="index.html">Iniciar sesión</a>
+        ¿Tienes una cuenta? <a href="{{ url_for('index') }}">Iniciar sesión</a>
       </p>
     </div>
   </body>

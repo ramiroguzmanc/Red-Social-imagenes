@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Recuperar contraseña</title>
-    <link rel="stylesheet" type="text/css" href="css/recuperarcontraseña.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/recuperarcontrasena.css') }}" />
 	<Style>
 		p[name="color"]{
 			color:#000000;
@@ -40,7 +40,7 @@
         </div>
       </form>
       <p class="iniciar">
-        ¿Deseas volver al inicio? <a name= "color" href="index.html">Inicio</a>
+        ¿Deseas volver al inicio? <a name= "color" href="{{ url_for('index') }}">Inicio</a>
       </p>
     </div>
   </body>

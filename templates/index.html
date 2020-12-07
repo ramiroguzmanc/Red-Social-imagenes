@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <title>Imacol | Login</title>
 </head>
 <body>
   <section class="login_container">
       <div class="login_image">
-          <img src="images/home_image.png" alt="Photos" id="multi_image">
+          <img src="{{ url_for('static', filename='images/home_image.png') }}" alt="Photos" id="multi_image">
       </div>
 
       <div class="login">
           <h1 class="login_title">Iniciar sesión</h1>
           <br>
-          <form method="GET" action="home.html">
+          <form method="GET" action="{{ url_for('home') }}">
               <input type="text" name="username" id="username" class="login_input" placeholder="Nombre de usuario o correo electrónico">
               <br>
               <input type="password" name="password" id="password" class="login_input" placeholder="Contraseña">
               <br>
-              <a href="recuperarcontraseña.html" class="forgetPassword">¿Olvidaste tu contraseña?</a>
+              <a href="{{ url_for('recuperarcontrasena') }}" class="forgetPassword">¿Olvidaste tu contraseña?</a>
               
               <br>
                 <input type="submit" value="Iniciar Sesión" class="login_button">
             </form>
           <div class="login_register">
               <h5 class="login_register_title">¿Aún no tienes cuenta?</h5> 
-              <a href="registrarse.html">
+              <a href="{{ url_for('registro') }}">
                 <input type="button" value="Registrarse" class="login_button">
               </a>  
             </div>
