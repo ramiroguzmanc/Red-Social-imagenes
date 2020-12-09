@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Registro</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/registrarse.css') }}" />
+    <link rel="stylesheet" type="text/css" href="../static/css/registrarse.css" />
   </head>
   <body>
     <div id="contenedor">
@@ -70,8 +70,8 @@
               id="sexohombre"
               class="radio_option"
           /></span>
-          <span
-            ><label for="sexomujer" class="radio_option">Mujer</label
+          <span>
+            <label for="sexomujer" class="radio_option">Mujer</label
             ><input
               type="radio"
               name="nombre"
@@ -92,7 +92,7 @@
         </div>
       </form>
       <p class="iniciar">
-        ¿Tienes una cuenta? <a href="{{ url_for('index') }}">Iniciar sesión</a>
+        ¿Tienes una cuenta? <a href="/">Iniciar sesión</a>
       </p>
     </div>
   </body>

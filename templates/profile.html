@@ -3,16 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}" />
+    <link rel="stylesheet" href="../static/css/profile.css" />
     <title>Imacol | Profile</title>
   </head>
   <body>
     <header>
-      <a href="{{ url_for('home') }}">
-        <img src="{{ url_for('static', filename='images/Imacol.jpg') }}" alt="Logo" class="header_logo" />
+      <a href="/home">
+        <img src="../static/imagenes/imacol.jpg" alt="Logo" class="header_logo" />
       </a>
       <div class="searchBar_container">
-        <img src="{{ url_for('static', filename='images/lupa.png') }}" alt="lupa" />
+        <img src="../static/imagenes/lupa.png" alt="lupa" />
         <input
           type="text"
           name="searchbar"
@@ -20,18 +20,18 @@
           placeholder="Buscar una etiqueta"
         />
       </div>
-      <a href="{{ url_for('subir') }}" class="header_upload_button">
+      <a href="/subir" class="header_upload_button">
         <div class="header_upload_button_container">
-          <img src="{{ url_for('static', filename='images/plus.png') }}" class="header_upload_button_image" />
+          <img src="../static/imagenes/plus.png" class="header_upload_button_image" />
           Subir
         </div>
       </a>
       <section class="navbar_profile">
-        <a href="{{ url_for('perfil') }}">
+        <a href="/perfil">
           <div class="navbar_profile_container">
             <div class="profile_image_container">
               <img
-                src="{{ url_for('static', filename='images/user.png') }}"
+                src="../static/imagenes/user.png"
                 alt="profile_image"
                 class="navbar_profile_image"
               />
@@ -45,7 +45,7 @@
       <section class="user_info_container">
         <div class="user_info_profileimage_container">
           <div class="profileimage_container">
-            <img src="{{ url_for('static', filename='images/user.png') }}" alt="profile_image" />
+            <img src="../static/imagenes/user.png" alt="profile_image" />
           </div>
         </div>
         <label class="username_title">Username</label>
@@ -62,44 +62,44 @@
         </div>
         <div class="posts_row_container">
           <div class="post">
-            <img src="{{ url_for('static', filename='images/paisaje.jpg') }}" alt="image">
+            <img src="../static/imagenes/paisaje.jpg" alt="image">
           </div>
           <div class="post">
-            <img src="{{ url_for('static', filename='images/paisaje.jpg') }}" alt="image">
+            <img src="../static/imagenes/paisaje.jpg" alt="image">
           </div>
           <div class="post">
-            <img src="{{ url_for('static', filename='images/paisaje.jpg') }}" alt="image">
+            <img src="../static/imagenes/paisaje.jpg" alt="image">
           </div>
           <div class="post">
-            <img src="{{ url_for('static', filename='images/paisaje.jpg') }}" alt="image">
-          </div>
-        </div>
-        <div class="posts_row_container">
-          <div class="post">
-            <img src="{{ url_for('static', filename='images/paisaje.jpg') }}" alt="image">
-          </div>
-          <div class="post">
-            <img src="{{ url_for('static', filename='images/paisaje.jpg') }}" alt="image">
-          </div>
-          <div class="post">
-            <img src="{{ url_for('static', filename='images/paisaje.jpg') }}" alt="image">
-          </div>
-          <div class="post">
-            <img src="{{ url_for('static', filename='images/paisaje.jpg') }}" alt="image">
+            <img src="../static/imagenes/paisaje.jpg" alt="image">
           </div>
         </div>
         <div class="posts_row_container">
           <div class="post">
-            <img src="{{ url_for('static', filename='images/paisaje.jpg') }}" alt="image">
+            <img src="../static/imagenes/paisaje.jpg" alt="image">
           </div>
           <div class="post">
-            <img src="{{ url_for('static', filename='images/paisaje.jpg') }}" alt="image">
+            <img src="../static/imagenes/paisaje.jpg" alt="image">
           </div>
           <div class="post">
-            <img src="{{ url_for('static', filename='images/paisaje.jpg') }}" alt="image">
+            <img src="../static/imagenes/paisaje.jpg" alt="image">
           </div>
           <div class="post">
-            <img src="{{ url_for('static', filename='images/paisaje.jpg') }}" alt="image">
+            <img src="../static/imagenes/paisaje.jpg" alt="image">
+          </div>
+        </div>
+        <div class="posts_row_container">
+          <div class="post">
+            <img src="../static/imagenes/paisaje.jpg" alt="image">
+          </div>
+          <div class="post">
+            <img src="../static/imagenes/paisaje.jpg" alt="image">
+          </div>
+          <div class="post">
+            <img src="../static/imagenes/paisaje.jpg" alt="image">
+          </div>
+          <div class="post">
+            <img src="../static/imagenes/paisaje.jpg" alt="image">
           </div>
         </div>
       </section>

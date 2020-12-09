@@ -1,37 +1,45 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <title>Imacol | Login</title>
+    <link rel="stylesheet" href="../static/css/estilo.css">
+    <script src="../static/js/login.js"></script>
+    <title>Document</title>
 </head>
 <body>
-  <section class="login_container">
-      <div class="login_image">
-          <img src="{{ url_for('static', filename='images/home_image.png') }}" alt="Photos" id="multi_image">
-      </div>
-
-      <div class="login">
-          <h1 class="login_title">Iniciar sesión</h1>
-          <br>
-          <form method="GET" action="{{ url_for('home') }}">
-              <input type="text" name="username" id="username" class="login_input" placeholder="Nombre de usuario o correo electrónico">
-              <br>
-              <input type="password" name="password" id="password" class="login_input" placeholder="Contraseña">
-              <br>
-              <a href="{{ url_for('recuperarcontrasena') }}" class="forgetPassword">¿Olvidaste tu contraseña?</a>
-              
-              <br>
-                <input type="submit" value="Iniciar Sesión" class="login_button">
-            </form>
-          <div class="login_register">
-              <h5 class="login_register_title">¿Aún no tienes cuenta?</h5> 
-              <a href="{{ url_for('registro') }}">
-                <input type="button" value="Registrarse" class="login_button">
-              </a>  
-            </div>
+    <section class="login_container">
+        <div class="login_image">
+            <img src="../static/imagenes/home_image.png" alt="Photos" id="multi_image">
         </div>
-  </section>
+    <div class="login">
+    <h1 class="login_title">Iniciar sesión</h1>
+    <br>
+    <form  name="formulario" id="formulario" action="" method="GET">
+
+        <input name="usuario" id="usuario" class="login_input" placeholder="Nombre de usuario o correo electrónico" required>
+        <br>
+        <input type="password" name="password" id="password" class="login_input" placeholder="Contraseña" required>
+        <br>
+        <img src="../static/imagenes/ojo.png" id="imagen_ojo" onmouseover="mostrarContrasena()" onmouseout="ocultarContrasena()">
+        <br>
+        <a href="/forgot" class="forgetPassword">¿Olvidaste tu contraseña?</a>
+        <br>
+        <input type="submit" value="Iniciar sesión" class="login_button">
+        <div class="login_register">
+        <h5 class="login_register_title">¿Aún no tienes cuenta?</h5> 
+            <a href="/registro">
+                <input type="button" value="Registrarse" class="login_button">
+            </a>
+        </div>
+        <section class="content">
+            {% for message in get_flashed_messages() %}
+            <div class="flash">{{message}}</div>
+            {% endfor %}
+        </section>
+        </form>
+    </div>
+    </section>
+
 </body>
 </html>
