@@ -22,6 +22,11 @@
     padding: 0 10%;
 }
 
+
+#imagen_ojo{
+    width: 20px;
+}
+
 #multi_image{
     width: 600px;
 }
