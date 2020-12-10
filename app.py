@@ -58,8 +58,7 @@ def subir():
     form = FormSubir()
 
     if (form.validate_on_submit()):
-        yag = yagmail.SMTP('imacol.misiontic@gmail.com','misiontic')
-        yag.send(to='jpsuarezr551@gmail.com', subject='Recupera tu cuenta', contents = 'Activa tu cuenta ('+ request.method +')')
+        #En esta parte se guardará la imagen
         return redirect('/home')
 
     return render_template('subir.html', form=form)
