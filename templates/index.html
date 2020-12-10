@@ -10,22 +10,22 @@
 <body>
     <section class="login_container">
         <div class="login_image">
-            <img src="../static/imagenes/home_image.png" alt="Photos" id="multi_image">
+            <img src="../static/images/home_image.png" alt="Photos" id="multi_image">
         </div>
     <div class="login">
     <h1 class="login_title">Iniciar sesión</h1>
     <br>
-    <form  name="formulario" id="formulario" action="" method="GET">
-
-        <input name="usuario" id="usuario" class="login_input" placeholder="Nombre de usuario o correo electrónico" required>
+    <form name = form action="" method="post" novalidate>
+        {{form.hidden_tag()}}
+        {{form.usuario(size=30, class_="login_input")}}
         <br>
-        <input type="password" name="password" id="password" class="login_input" placeholder="Contraseña" required>
+        {{form.contraseña(size=30, class_="login_input", id_="password")}}
         <br>
-        <img src="../static/imagenes/ojo.png" id="imagen_ojo" onmouseover="mostrarContrasena()" onmouseout="ocultarContrasena()">
+        <img src="../static/images/ojo.png" id="imagen_ojo" onmouseover="mostrarContrasena()" onmouseout="ocultarContrasena()">
         <br>
         <a href="/forgot" class="forgetPassword">¿Olvidaste tu contraseña?</a>
         <br>
-        <input type="submit" value="Iniciar sesión" class="login_button">
+        {{form.enviar(class_="login_button")}}
         <div class="login_register">
         <h5 class="login_register_title">¿Aún no tienes cuenta?</h5> 
             <a href="/registro">

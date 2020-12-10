@@ -10,38 +10,22 @@
     <div class="container">
       <div class="cargar">
         <h1 class="cargar_title">Subir imagen</h1>
-        <form method="GET">
+        <form name = form action="" method="POST" novalidate>
+          {{form.hidden_tag()}}
           <br />
-          <input
-            type="text"
-            name="nombre_imagen"
-            id="nombre_imagen"
-            class="cargar_input"
-            placeholder="Nombre de la imagen"
-          />
+          {{form.nombre(size=30, class_="cargar_input")}}
           <br />
-          <input
-            type="text"
-            name="tags"
-            id="tags"
-            class="cargar_input"
-            placeholder="Tags"
-          />
+          {{form.tags(size=30, class_="cargar_input")}}
           <input type="file" value="Cargar imagen" id="boton_1" />
           <br /><br />
-          <label class="check"
-            ><input type="checkbox" name="seleccionador" class="check_b" />
-            ¿Pública?</label
-          >
+          <div>{{form.esPublica(class_="check_b")}} ¿Pública?</div>
           <br />
           <hr />
           <div class="cargar_buttons_container">
             <a href="/home">
               <div class="cargar_button">Cancelar</div>
             </a>
-            <a href="#">
-              <div class="cargar_button">Subir</div>
-            </a>
+            {{form.enviar(class_="cargar_button")}}
           </div>
         </form>
       </div>

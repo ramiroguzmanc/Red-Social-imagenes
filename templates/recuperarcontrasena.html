@@ -7,8 +7,6 @@
 	<Style>
 		p[name="color"]{
 			color:#000000;
-			
-			
 		}
 	
 	</Style>
@@ -19,25 +17,12 @@
       <h1>Recuperar contraseña</h1>
 		<p name="color">Por favor digite su correo electronico o nombre de usuario registrado</p>
 		
-      <form>
-      
-
+      <form name = form action="" method="post" novalidate>
+        {{form.hidden_tag()}}
         <div class="fila">
-          <div class="mediacelda">
-            <label></label
-            ><input
-              type="email"
-              name="email"
-              class="elemento"
-              placeholder="Correo electronico o nombre de usuario"
-            />
-          
- 
-      
-
-        <div class="radio">
-          <button>Siguiente</button>
+            {{form.email(class_="elemento")}}
         </div>
+            {{form.enviar(class_="login_button")}}
       </form>
       <p class="iniciar">
         ¿Deseas volver al inicio? <a name= "color" href="/">Inicio</a>

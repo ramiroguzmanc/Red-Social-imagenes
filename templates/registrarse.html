@@ -8,34 +8,20 @@
   <body>
     <div id="contenedor">
       <h1>REGISTRARSE</h1>
-      <form>
+      <form name = form action="" method="post" novalidate>
+        {{form.hidden_tag()}}
         <div class="fila">
           <div class="mediacelda">
-            <input
-              type="text"
-              name="nombre"
-              placeholder="Nombres"
-              class="elemento"
-            />
+            {{form.nombre(size=30, class_="elemento")}}
           </div>
           <div class="mediacelda">
-            <input
-              type="text"
-              name="apellido"
-              placeholder="Apellidos"
-              class="elemento"
-            />
+            {{form.apellido(size=30, class_="elemento")}}
           </div>
         </div>
         <div class="fila">
           <div class="mediacelda">
-            <label>Correo electrónico</label
-            ><input
-              type="email"
-              name="email"
-              class="elemento"
-              placeholder="Correo electrónico"
-            />
+            <label>Correo electrónico</label>
+            {{form.email(size=30, class_="elemento")}}
           </div>
           <div class="mediacelda">
             <label>Fecha de nacimiento</label
@@ -44,20 +30,10 @@
         </div>
         <div class="fila">
           <div class="mediacelda">
-            <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              class="elemento"
-            />
+            {{form.usuario(size=30, class_="elemento")}}
           </div>
           <div class="mediacelda">
-            <input
-              type="password"
-              name="password"
-              placeholder="Contraseña"
-              class="elemento"
-            />
+            {{form.contraseña(size=30, class_="elemento")}}
           </div>
         </div>
         <div class="radio">
@@ -87,9 +63,7 @@
               class="radio_option"
           /></span>
         </div>
-        <div class="radio">
-          <button>Registrarse</button>
-        </div>
+        {{form.enviar(class_="radio")}}
       </form>
       <p class="iniciar">
         ¿Tienes una cuenta? <a href="/">Iniciar sesión</a>
