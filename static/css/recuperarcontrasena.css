@@ -12,6 +12,7 @@ body{
 	border: 1px solid #C1C0C0;
 	border-radius: 20px;
 	padding: 20px 40px;
+	text-align: center;
 }
 
 #contenedor h1{
@@ -77,13 +78,14 @@ label{
 	display: inline-block;
 }
 
-button{
-	/* margin-top: 10px;
-	line-height: 1.5;
-	background: #0f3157;
-	color: white;
-	border-radius: 5px; */
-	margin: 20px 0 10px 0;
+
+button:hover{
+	cursor: pointer;
+	border: 2px solid #276E88;
+}
+
+.login_button{
+    margin: 20px 0 45px 0;
     width: 200px;
     height: 32px;
     border: 2px solid transparent;
@@ -93,9 +95,4 @@ button{
     font-weight: bold;
     font-size: 14px;
     outline: none;
-}
-
-button:hover{
-	cursor: pointer;
-	border: 2px solid #276E88;
 }
