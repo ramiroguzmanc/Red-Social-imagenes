@@ -6,6 +6,7 @@ from forms import FormIndex, FormRecuperar, FormSubir, FormRegistro
 import yagmail
 import sqlite3
 import sys
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -20,17 +21,21 @@ def index():
         contraseña = form.contraseña.data
         with sqlite3.connect("redsocial.db") as con:
             cur = con.cursor()
-            cur.execute("SELECT * FROM usuarios WHERE usuario=? AND contraseña=?", [usuario, contraseña])
+            cur.execute("SELECT * FROM usuarios WHERE usuario=?", [usuario])
             registro = cur.fetchone()
             if registro:
                 if registro[8]:
-                    return render_template('home.html')
+                    if check_password_hash(registro[6], contraseña):
+                        return render_template('home.html')
+                    else:
+                        flash('Usuario o contraseña incorrectos')
+                        return redirect('/')
                 else:
                     flash('Usuario no activo')
                     return redirect('/')
             else:
-                flash('Usuario o contraseña incorrectos')
-                return redirect('/')
+                flash('Usuario no registrado')
+            
 
     return render_template('index.html', form=form)
 
@@ -49,7 +54,7 @@ def registro():
         email = form.email.data
         fecha = request.form['fecha']
         usuario = form.usuario.data
-        contraseña = form.contraseña.data
+        contraseña = generate_password_hash(form.contraseña.data)
         sexo = request.form['sexo']
         try:
             with sqlite3.connect("redsocial.db") as con:
