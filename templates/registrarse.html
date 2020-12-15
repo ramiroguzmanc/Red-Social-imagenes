@@ -8,7 +8,7 @@
   <body>
     <div id="contenedor">
       <h1>REGISTRARSE</h1>
-      <form name = form action="" method="post" novalidate>
+      <form name ="form" action="" method="post" novalidate>
         {{form.hidden_tag()}}
         <div class="fila">
           <div class="mediacelda">
@@ -42,25 +42,28 @@
             ><label for="sexohombre" class="radio_option">Hombre</label
             ><input
               type="radio"
-              name="nombre"
+              name="sexo"
               id="sexohombre"
               class="radio_option"
+              value="Hombre"
           /></span>
           <span>
             <label for="sexomujer" class="radio_option">Mujer</label
             ><input
               type="radio"
-              name="nombre"
+              name="sexo"
               id="sexomujer"
               class="radio_option"
+              value="Mujer"
           /></span>
           <span
             ><label for="sexootro" class="radio_option">Otro</label
             ><input
               type="radio"
-              name="nombre"
+              name="sexo"
               id="sexootro"
               class="radio_option"
+              value="Otro"
           /></span>
         </div>
         {{form.enviar(class_="radio")}}
