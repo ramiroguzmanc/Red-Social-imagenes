@@ -7,7 +7,7 @@
   </head>
   <body>
     <div id="contenedor">
-      <h1>REGISTRARSE</h1>
+      <h1>ACTUALIZAR DATOS</h1>
       <form name ="form" action="" method="post">
         {{form.hidden_tag()}}
         <div class="fila">
@@ -31,9 +31,6 @@
         <div class="fila">
           <div class="mediacelda">
             {{form.usuario(size=30, class_="elemento")}}
-          </div>
-          <div class="mediacelda">
-            {{form.contraseña(size=30, class_="elemento")}}
           </div>
         </div>
         <div class="radio">
@@ -67,15 +64,13 @@
           /></span>
         </div>
         {{form.enviar(class_="radio")}}
+        <a href="/perfil"><input type="button" value="volver"></a>
         <section class="content">
           {% for message in get_flashed_messages() %}
           <div class="flash">{{message}}</div>
           {% endfor %}
       </section>
       </form>
-      <p class="iniciar">
-        ¿Tienes una cuenta? <a href="/">Iniciar sesión</a>
-      </p>
     </div>
   </body>
 </html>
