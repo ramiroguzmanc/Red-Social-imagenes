@@ -147,13 +147,38 @@ def activar():
 
 @app.route('/actualizar')
 def actualizar():
-    """
 
-    """
+    nombre=''
+    apellido=''
+    email=''
+    usuario=''
+    propietario_id = session["id"]
+    try:
+        #Consulta a bd
+        with sqlite3.connect("redsocial.db") as con:
+            cur = con.cursor()
+            cur.execute("select * from usuarios where id=?",[propietario_id])
+            datos = cur.fetchone()
+            print(datos)
+            nombre = datos[1]
+            apellido = datos[2]
+            email = datos[3]
+            fecha = datos[4]
+            usuario = datos[5]
+
+    except:
+        print('error')
+
+    #Establecimiento de valores actuales (WTForm)
     form = FormActualizar()
-    if form.validate_on_submit():
-        return 'bien'
-    return render_template('actualizar.html',form=form)
+    form.nombre.default = nombre
+    form.apellido.default = apellido
+    form.email.default = email
+    form.usuario.default = usuario
+    form.process()
+    
+
+    return render_template('actualizar.html',form=form,fecha=fecha)
 
 if __name__=='__main__':
     app.run()
