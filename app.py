@@ -18,7 +18,7 @@ app.config['UPLOAD_FOLDER'] = 'uploads'
 def index():
 
     form = FormIndex()
-    if form.validate_on_submit():
+    if request.method=='POST':
         usuario = form.usuario.data
         contraseña = form.contraseña.data
         with sqlite3.connect("redsocial.db") as con:
@@ -53,7 +53,7 @@ def login():
 @app.route('/registro',methods=['POST','GET'])
 def registro():
     form = FormRegistro()
-    if form.validate_on_submit():
+    if request.method=='POST':
         nombre = form.nombre.data
         apellido = form.apellido.data
         email = form.email.data
@@ -84,7 +84,7 @@ def forgot():
 
     form = FormRecuperar()
 
-    if (form.validate_on_submit()):
+    if request.method=='POST':
         yag = yagmail.SMTP('imacol.misiontic@gmail.com','misiontic')
         yag.send(to=form.email.data, subject='Recupera tu cuenta', contents = 'Activa tu cuenta ('+ request.method +')')
         return redirect('/')
@@ -98,7 +98,7 @@ def home():
 @app.route('/subir',methods=['POST','GET'])
 def subir():
     form = FormSubir()
-    if form.validate_on_submit():
+    if request.method=='POST':
         if 'imagen' not in request.files:
             flash('No hay parte de archivo')
             return redirect('/subir')
@@ -145,7 +145,7 @@ def activar():
         return 'No se pudo guardar' + sys.exc_info()[1].args[0]
 
 
-@app.route('/actualizar')
+@app.route('/actualizar',methods=['GET','POST'])
 def actualizar():
 
     nombre=''
@@ -165,37 +165,46 @@ def actualizar():
             email = datos[3]
             fecha = datos[4]
             usuario = datos[5]
+            con.close()
 
     except:
         print('error')
 
     #Establecimiento de valores actuales (WTForm)
-    form = FormActualizar()
-    form.nombre.default = nombre
-    form.apellido.default = apellido
-    form.email.default = email
-    form.usuario.default = usuario
-    form.process()
+    form1 = FormActualizar()
+    form1.nombre.default = nombre
+    form1.apellido.default = apellido
+    form1.email.default = email
+    form1.usuario.default = usuario
+    form1.process()
     
-    if form.validate_on_submit():
+    if request.method=='POST':
+        form = FormActualizar()
+        nombre = form.nombre.data
+        print(nombre)
+        apellido = form.apellido.data
+        print(apellido)
+        email = form.email.data
+        print(email)
+        usuario = form.usuario.data
+        print(usuario)
+        fecha = request.form['fecha']
+        print(fecha)
         try:
-            con = sqlite3.connect("redsocial.db")
-            cur = con.cursor()
-            nombre = form.nombre.data
-            apellido = form.apellido.data
-            email = form.email.data
-            usuario = form.usuario.data
-            fecha = request.form['fecha']
-            cur.execute("UPDATE usuarios SET nombres=?, apellidos=?, email=?, fechanac=?, usuario=? where id=?",[nombre,apellido,email,fecha,usuario,propietario_id])
-            con.commit()
+            with sqlite3.connect("redsocial.db") as con:
+                cur = con.cursor()
+                cur.execute("UPDATE usuarios SET nombres=?, apellidos=?, email=?, fechanac=?, usuario=? where id=?",[nombre,apellido,email,fecha,usuario,propietario_id])
+                con.commit()
             flash("Sus datos fueron actualizados")
-            return redirect("/")
+            return render_template('actualizar.html',form=form,fecha=fecha)
         except:
             flash("Ocurrió un error")
-            return redirect("/")
+            return render_template('actualizar.html',form=form,fecha=fecha)
 
 
-    return render_template('actualizar.html',form=form,fecha=fecha)
+
+
+    return render_template('actualizar.html',form=form1,fecha=fecha)
 
 if __name__=='__main__':
     app.run()
