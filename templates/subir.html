@@ -10,13 +10,13 @@
     <div class="container">
       <div class="cargar">
         <h1 class="cargar_title">Subir imagen</h1>
-        <form name = form action="" method="POST" novalidate>
+        <form name = form action="" method="POST" enctype="multipart/form-data" novalidate>
           {{form.hidden_tag()}}
           <br />
           {{form.nombre(size=30, class_="cargar_input")}}
           <br />
           {{form.tags(size=30, class_="cargar_input")}}
-          <input type="file" value="Cargar imagen" id="boton_1" />
+          <input type="file" value="Cargar imagen" id="boton_1" name="imagen"/>
           <br /><br />
           <div>{{form.esPublica(class_="check_b")}} ¿Pública?</div>
           <br />
@@ -27,6 +27,11 @@
             </a>
             {{form.enviar(class_="cargar_button")}}
           </div>
+          <section class="content">
+            {% for message in get_flashed_messages() %}
+            <div class="flash">{{message}}</div>
+            {% endfor %}
+          </section>
         </form>
       </div>
     </div>
