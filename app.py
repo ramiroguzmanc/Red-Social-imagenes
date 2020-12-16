@@ -177,6 +177,23 @@ def actualizar():
     form.usuario.default = usuario
     form.process()
     
+    if form.validate_on_submit():
+        try:
+            con = sqlite3.connect("redsocial.db")
+            cur = con.cursor()
+            nombre = form.nombre.data
+            apellido = form.apellido.data
+            email = form.email.data
+            usuario = form.usuario.data
+            fecha = request.form['fecha']
+            cur.execute("UPDATE usuarios SET nombres=?, apellidos=?, email=?, fechanac=?, usuario=? where id=?",[nombre,apellido,email,fecha,usuario,propietario_id])
+            con.commit()
+            flash("Sus datos fueron actualizados")
+            return redirect("/")
+        except:
+            flash("Ocurrió un error")
+            return redirect("/")
+
 
     return render_template('actualizar.html',form=form,fecha=fecha)
 
