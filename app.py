@@ -11,7 +11,7 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
-app.config['UPLOAD_FOLDER'] = 'uploads'
+app.config['UPLOAD_FOLDER'] = 'static/images/uploads'
 
 
 @app.route('/',methods=['GET', 'POST'])
@@ -92,7 +92,16 @@ def forgot():
     
 @app.route('/home',methods=['GET','POST'])
 def home():
-    return render_template('home.html')
+    if request.method=='POST':
+        return render_template('home.html')
+    else: # Petición GET
+        with sqlite3.connect("redsocial.db") as con:
+            cur = con.cursor()
+            cur.execute("SELECT * FROM imagenes WHERE publica=True")
+            imagenes = cur.fetchall()
+            return render_template('home.html', imagenes = imagenes)
+
+
 
 
 @app.route('/subir',methods=['POST','GET'])

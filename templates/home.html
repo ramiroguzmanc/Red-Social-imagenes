@@ -51,6 +51,14 @@
     <section class="contain">
       <section class="posts_container">
         <div class="posts_row_container">
+          {% for imagen in imagenes %}
+            <div class="post">
+              <img src="static/images/uploads/{{ imagen[4] }}" alt="image">
+            </div>
+          {% endfor %}
+        </div>
+<!--
+      <div class="posts_row_container">
           <div class="post">
             <img src="../static/images/paisaje.jpg" alt="image">
           </div>
@@ -84,23 +92,7 @@
             <img src="../static/images/paisaje.jpg" alt="image">
           </div>
         </div>
-        <div class="posts_row_container">
-          <div class="post">
-            <img src="../static/images/paisaje.jpg" alt="image">
-          </div>
-          <div class="post">
-            <img src="../static/images/paisaje.jpg" alt="image">
-          </div>
-          <div class="post">
-            <img src="../static/images/paisaje.jpg" alt="image">
-          </div>
-          <div class="post">
-            <img src="../static/images/paisaje.jpg" alt="image">
-          </div>
-          <div class="post">
-            <img src="../static/images/paisaje.jpg" alt="image">
-          </div>
-        </div>
+-->        
       </section>
     </section>
   </body>
