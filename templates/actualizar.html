@@ -25,7 +25,7 @@
           </div>
           <div class="mediacelda">
             <label>Fecha de nacimiento</label
-            ><input type="date" name="fecha" class="elemento" />
+            ><input type="date" name="fecha" class="elemento" value = "{{fecha}}"/>
           </div>
         </div>
         <div class="fila">
@@ -61,6 +61,7 @@
               id="sexootro"
               class="radio_option"
               value="Otro"
+
           /></span>
         </div>
         {{form.enviar(class_="radio")}}
