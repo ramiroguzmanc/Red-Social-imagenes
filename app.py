@@ -2,7 +2,7 @@ from wtforms import StringField
 from flask_wtf import FlaskForm
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 import os
-from forms import FormIndex, FormRecuperar, FormSubir, FormRegistro
+from forms import FormIndex, FormRecuperar, FormSubir, FormRegistro, FormActualizar
 import yagmail
 import sqlite3
 import sys
@@ -18,7 +18,7 @@ app.config['UPLOAD_FOLDER'] = 'uploads'
 def index():
 
     form = FormIndex()
-    if request.method == "POST":
+    if form.validate_on_submit():
         usuario = form.usuario.data
         contraseña = form.contraseña.data
         with sqlite3.connect("redsocial.db") as con:
@@ -53,7 +53,7 @@ def login():
 @app.route('/registro',methods=['POST','GET'])
 def registro():
     form = FormRegistro()
-    if request.method == "POST":
+    if form.validate_on_submit():
         nombre = form.nombre.data
         apellido = form.apellido.data
         email = form.email.data
@@ -73,7 +73,8 @@ def registro():
             return redirect('/')
         except:
             con.rollback()
-            return 'No se pudo guardar' + sys.exc_info()[1].args[0]
+            flash('El correo ingresado ya se encuentra registrado')
+            return render_template('registrarse.html', form=form)
 
     return render_template('registrarse.html', form=form)
 
@@ -97,7 +98,7 @@ def home():
 @app.route('/subir',methods=['POST','GET'])
 def subir():
     form = FormSubir()
-    if request.method == "POST":
+    if form.validate_on_submit():
         if 'imagen' not in request.files:
             flash('No hay parte de archivo')
             return redirect('/subir')
@@ -144,6 +145,15 @@ def activar():
         return 'No se pudo guardar' + sys.exc_info()[1].args[0]
 
 
+@app.route('/actualizar')
+def actualizar():
+    """
+
+    """
+    form = FormActualizar()
+    if form.validate_on_submit():
+        return 'bien'
+    return render_template('actualizar.html',form=form)
 
 if __name__=='__main__':
     app.run()
