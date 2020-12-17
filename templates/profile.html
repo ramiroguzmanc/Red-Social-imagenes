@@ -37,7 +37,7 @@
                   class="navbar_profile_image"
                 />
               </div>
-              Username
+              {{usuario}}
             </div>
           </a>
         </div>
@@ -55,12 +55,11 @@
             <img src="../static/images/user.png" alt="profile_image" />
           </div>
         </div>
-        <label class="username_title">Username</label>
+        <label class="username_title">{{usuario}}</label>
         <section class="username_info">
-          <h4>Nombres:</h4>
-          <h4>Apellidos:</h4>
-          <h4>Edad:</h4>
-          <h4>Sexo:</h4>
+          <h4>Nombres: {{nombres}}</h4>
+          <h4>Apellidos: {{apellidos}}</h4>
+          <h4>Sexo: {{sexo}}</h4>
           <br>
           <a href = "/actualizar">Actualizar datos</a>
         </section>
