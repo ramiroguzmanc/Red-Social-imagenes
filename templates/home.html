@@ -22,7 +22,10 @@
       </div>
       <a href="/subir" class="header_upload_button">
         <div class="header_upload_button_container">
-          <img src="../static/images/plus.png" class="header_upload_button_image" />
+          <img
+            src="../static/images/plus.png"
+            class="header_upload_button_image"
+          />
           Subir
         </div>
       </a>
@@ -43,7 +46,7 @@
         </div>
         <div class="logout_section">
           <a href="/">
-            <img src="../static/images/logout.png" alt="logout" width="30px">
+            <img src="../static/images/logout.png" alt="logout" width="30px" />
           </a>
         </div>
       </section>
@@ -52,12 +55,17 @@
       <section class="posts_container">
         <div class="posts_row_container">
           {% for imagen in imagenes %}
-            <div class="post">
-              <img src="static/images/uploads/{{ imagen[4] }}" alt="image">
+          <div class="post">
+            <img src="static/images/uploads/{{ imagen[4] }}" alt="image" />
+            <div class="download_container">
+              <a href="#">
+                <img src="../static/images/downloadimage.png" alt="download" />
+              </a>
             </div>
+          </div>
           {% endfor %}
         </div>
-<!--
+        <!--
       <div class="posts_row_container">
           <div class="post">
             <img src="../static/images/paisaje.jpg" alt="image">
@@ -92,7 +100,7 @@
             <img src="../static/images/paisaje.jpg" alt="image">
           </div>
         </div>
--->        
+-->
       </section>
     </section>
   </body>
