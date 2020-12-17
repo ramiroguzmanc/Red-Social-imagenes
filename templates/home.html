@@ -40,12 +40,12 @@
                   class="navbar_profile_image"
                 />
               </div>
-              Username
+                {{usuario}}
             </div>
           </a>
         </div>
         <div class="logout_section">
-          <a href="/">
+          <a href="/cerrarsesion">
             <img src="../static/images/logout.png" alt="logout" width="30px" />
           </a>
         </div>
@@ -58,49 +58,13 @@
           <div class="post">
             <img src="static/images/uploads/{{ imagen[4] }}" alt="image" />
             <div class="download_container">
-              <a href="#">
+              <a href="/download?archivo={{ imagen[4] }}">
                 <img src="../static/images/downloadimage.png" alt="download" />
               </a>
             </div>
           </div>
           {% endfor %}
         </div>
-        <!--
-      <div class="posts_row_container">
-          <div class="post">
-            <img src="../static/images/paisaje.jpg" alt="image">
-          </div>
-          <div class="post">
-            <img src="../static/images/paisaje.jpg" alt="image">
-          </div>
-          <div class="post">
-            <img src="../static/images/paisaje.jpg" alt="image">
-          </div>
-          <div class="post">
-            <img src="../static/images/paisaje.jpg" alt="image">
-          </div>
-          <div class="post">
-            <img src="../static/images/paisaje.jpg" alt="image">
-          </div>
-        </div>
-        <div class="posts_row_container">
-          <div class="post">
-            <img src="../static/images/paisaje.jpg" alt="image">
-          </div>
-          <div class="post">
-            <img src="../static/images/paisaje.jpg" alt="image">
-          </div>
-          <div class="post">
-            <img src="../static/images/paisaje.jpg" alt="image">
-          </div>
-          <div class="post">
-            <img src="../static/images/paisaje.jpg" alt="image">
-          </div>
-          <div class="post">
-            <img src="../static/images/paisaje.jpg" alt="image">
-          </div>
-        </div>
--->
       </section>
     </section>
   </body>

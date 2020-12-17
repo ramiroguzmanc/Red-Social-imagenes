@@ -185,9 +185,9 @@ header {
 
 .posts_row_container {
   /* border: 1px solid hotpink; */
-  display: flex;
+/*  display: flex;
   justify-content: space-around;
-  padding: 20px 0;
+*/  padding: 20px 0;
 }
 
 .post {
@@ -197,6 +197,8 @@ header {
   border-radius: 10px;
   width: 200px;
   height: 250px;
+  margin: 20px;
+  box-sizing: border-box;
 }
 
 /* .post:hover {

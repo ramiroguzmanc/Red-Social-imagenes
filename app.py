@@ -1,6 +1,6 @@
 from wtforms import StringField
 from flask_wtf import FlaskForm
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, flash, session, send_file
 import os
 from forms import FormIndex, FormRecuperar, FormSubir, FormRegistro, FormActualizar
 import yagmail
@@ -31,7 +31,7 @@ def index():
                         session.clear()
                         session["usuario"] = registro[5]
                         session["id"] = registro[0]
-                        return render_template('home.html')
+                        return redirect('/home')
                     else:
                         flash('Usuario o contraseña incorrectos')
                         return redirect('/')
@@ -92,6 +92,9 @@ def forgot():
     
 @app.route('/home',methods=['GET','POST'])
 def home():
+    if not 'usuario' in session:
+        return redirect('/')
+
     if request.method=='POST':
         return render_template('home.html')
     else: # Petición GET
@@ -99,7 +102,7 @@ def home():
             cur = con.cursor()
             cur.execute("SELECT * FROM imagenes WHERE publica=True")
             imagenes = cur.fetchall()
-            return render_template('home.html', imagenes = imagenes)
+            return render_template('home.html', imagenes = imagenes, usuario = session["usuario"])
 
 
 
@@ -214,6 +217,17 @@ def actualizar():
 
 
     return render_template('actualizar.html',form=form1,fecha=fecha)
+
+@app.route('/cerrarsesion')
+def cerrarsesion():
+    session.clear()
+    return redirect('/')
+
+@app.route('/download')
+def download():
+    archivo = request.args.get('archivo')
+    return send_file('static/images/uploads/' + archivo, as_attachment = True)
+
 
 if __name__=='__main__':
     app.run()
