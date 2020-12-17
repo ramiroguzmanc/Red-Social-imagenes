@@ -19,27 +19,30 @@ def index():
 
     form = FormIndex()
     if request.method=='POST':
-        usuario = form.usuario.data
-        contraseña = form.contraseña.data
-        with sqlite3.connect("redsocial.db") as con:
-            cur = con.cursor()
-            cur.execute("SELECT * FROM usuarios WHERE usuario=?", [usuario])
-            registro = cur.fetchone()
-            if registro:
-                if registro[8]:
-                    if check_password_hash(registro[6], contraseña):
-                        session.clear()
-                        session["usuario"] = registro[5]
-                        session["id"] = registro[0]
-                        return redirect('/home')
+        if form.validate():
+            usuario = form.usuario.data
+            contraseña = form.contraseña.data
+            with sqlite3.connect("redsocial.db") as con:
+                cur = con.cursor()
+                cur.execute("SELECT * FROM usuarios WHERE usuario=?", [usuario])
+                registro = cur.fetchone()
+                if registro:
+                    if registro[8]:
+                        if check_password_hash(registro[6], contraseña):
+                            session.clear()
+                            session["usuario"] = registro[5]
+                            session["id"] = registro[0]
+                            return redirect('/home')
+                        else:
+                            flash('Usuario o contraseña incorrectos')
+                            return redirect('/')
                     else:
-                        flash('Usuario o contraseña incorrectos')
+                        flash('Usuario no activo')
                         return redirect('/')
                 else:
-                    flash('Usuario no activo')
-                    return redirect('/')
-            else:
-                flash('Usuario no registrado')
+                    flash('Usuario no registrado')
+        else:
+            flash('Ocurrió un error en la autenticación')
             
 
     return render_template('index.html', form=form)
@@ -62,15 +65,22 @@ def registro():
         contraseña = generate_password_hash(form.contraseña.data)
         sexo = request.form['sexo']
         try:
-            with sqlite3.connect("redsocial.db") as con:
-                cur = con.cursor() #manipula la conexión a la bd
-                cur.execute("INSERT INTO usuarios VALUES (null,?,?,?,?,?,?,?,False,'usuario')", (nombre,apellido,email,fecha,usuario,contraseña,sexo))
-                con.commit()# confirma la transacción
-            yag = yagmail.SMTP('imacol.misiontic@gmail.com','misiontic')
-            yag.send(to=email, subject='Activa tu cuenta', contents = "Activa tu cuenta dando click <a href='http://localhost:5000/activar?usuario=" + usuario + "'> aqui</a>")
-            flash('Por favor revise el correo para activar su cuenta')
+            if form.validate():
 
-            return redirect('/')
+                with sqlite3.connect("redsocial.db") as con:
+
+                    cur = con.cursor() #manipula la conexión a la bd
+                    cur.execute("INSERT INTO usuarios VALUES (null,?,?,?,?,?,?,?,False,'usuario')", (nombre,apellido,email,fecha,usuario,contraseña,sexo))
+                    con.commit()# confirma la transacción
+                yag = yagmail.SMTP('imacol.misiontic@gmail.com','misiontic')
+                yag.send(to=email, subject='Activa tu cuenta', contents = "Activa tu cuenta dando click <a href='http://localhost:5000/activar?usuario=" + usuario + "'> aqui</a>")
+                flash('Por favor revise el correo para activar su cuenta')
+
+                return redirect('/')
+
+            else:
+
+                flash('Revise sus datos')
         except:
             con.rollback()
             flash('El correo ingresado ya se encuentra registrado')
@@ -84,7 +94,7 @@ def forgot():
 
     form = FormRecuperar()
 
-    if request.method=='POST':
+    if request.method=='POST' and form.validate():
         yag = yagmail.SMTP('imacol.misiontic@gmail.com','misiontic')
         yag.send(to=form.email.data, subject='Recupera tu cuenta', contents = 'Activa tu cuenta ('+ request.method +')')
         return redirect('/')
@@ -111,36 +121,55 @@ def home():
 def subir():
     form = FormSubir()
     if request.method=='POST':
-        if 'imagen' not in request.files:
-            flash('No hay parte de archivo')
-            return redirect('/subir')
-        f = request.files['imagen']
-        if f.filename == '':
-            flash('Archivo no seleccionado')
-            return redirect('/subir')
+        if form.validate():
+            if 'imagen' not in request.files:
+                flash('No hay parte de archivo')
+                return redirect('/subir')
+            f = request.files['imagen']
+            if f.filename == '':
+                flash('Archivo no seleccionado')
+                return redirect('/subir')
 
-        filename = secure_filename(f.filename)
-        f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            filename = secure_filename(f.filename)
+            f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-        propietario_id = session["id"]
-        nombre = form.nombre.data
-        tags = form.tags.data
-        archivo = str(filename)
-        restriccion = form.esPublica.data
-        try:
-            with sqlite3.connect("redsocial.db") as con:
-                cur = con.cursor() #manipula la conexión a la bd
-                cur.execute("INSERT INTO imagenes VALUES (null,?,?,?,?,?)", (propietario_id,nombre,tags,archivo,restriccion))
-                con.commit()# confirma la transacción
-            return redirect('/home')
-        except:
-            con.rollback()
-            return 'No se pudo guardar' + sys.exc_info()[1].args[0]
+            propietario_id = session["id"]
+            nombre = form.nombre.data
+            tags = form.tags.data
+            archivo = str(filename)
+            restriccion = form.esPublica.data
+            try:
+                with sqlite3.connect("redsocial.db") as con:
+                    cur = con.cursor() #manipula la conexión a la bd
+                    cur.execute("INSERT INTO imagenes VALUES (null,?,?,?,?,?)", (propietario_id,nombre,tags,archivo,restriccion))
+                    con.commit()# confirma la transacción
+                return redirect('/home')
+            except:
+                con.rollback()
+                return 'No se pudo guardar' + sys.exc_info()[1].args[0]
+        else:
+            flash("Revise los datos")
     return render_template('subir.html', form=form)
 
 @app.route('/perfil',methods=['GET','POST'])
 def perfil():
-    return render_template('profile.html')
+    nombre=''
+    apellido=''
+    sexo=''
+    propietario_id = session["id"]
+    try:
+        #Consulta a bd
+        with sqlite3.connect("redsocial.db") as con:
+            cur = con.cursor()
+            cur.execute("select * from usuarios where id=?",[propietario_id])
+            datos = cur.fetchone()
+            nombre = datos[1]
+            apellido = datos[2]
+            sexo = datos[7]
+            con.close()
+    except:
+        print('error')
+    return render_template('profile.html', usuario = session["usuario"], nombres=nombre, apellidos=apellido, sexo=sexo)
 
 @app.route('/activar')
 def activar():
@@ -202,20 +231,21 @@ def actualizar():
         print(usuario)
         fecha = request.form['fecha']
         print(fecha)
+        #Se agregó form.validate()
         try:
             with sqlite3.connect("redsocial.db") as con:
-                cur = con.cursor()
-                cur.execute("UPDATE usuarios SET nombres=?, apellidos=?, email=?, fechanac=?, usuario=? where id=?",[nombre,apellido,email,fecha,usuario,propietario_id])
-                con.commit()
-            flash("Sus datos fueron actualizados")
-            return render_template('actualizar.html',form=form,fecha=fecha)
+                if form.validate():
+                    cur = con.cursor()
+                    cur.execute("UPDATE usuarios SET nombres=?, apellidos=?, email=?, fechanac=?, usuario=? where id=?",[nombre,apellido,email,fecha,usuario,propietario_id])
+                    con.commit()
+                    flash("Sus datos fueron actualizados")
+                    return render_template('actualizar.html',form=form,fecha=fecha)
+                else:
+                    flash("Parece que un dato es muy largo o muy corto")
+                    return render_template('actualizar.html',form=form,fecha=fecha)
         except:
             flash("Ocurrió un error")
             return render_template('actualizar.html',form=form,fecha=fecha)
-
-
-
-
     return render_template('actualizar.html',form=form1,fecha=fecha)
 
 @app.route('/cerrarsesion')
