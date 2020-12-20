@@ -15,12 +15,12 @@
   <body>
     <div id="contenedor">
       <h1>Recuperar contraseña</h1>
-		<p name="color">Por favor digite su correo electronico o nombre de usuario registrado</p>
+		<p name="color">Por favor digite su nombre de usuario registrado</p>
 		
       <form name = form action="" method="post">
         {{form.hidden_tag()}}
         <div class="fila">
-            {{form.email(class_="elemento")}}
+            {{form.usuario(class_="elemento")}}
         </div>
             {{form.enviar(class_="login_button")}}
       </form>
