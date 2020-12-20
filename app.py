@@ -78,7 +78,8 @@ def registro():
                     cur.execute("INSERT INTO usuarios VALUES (null,?,?,?,?,?,?,?,False,'usuario')", (nombre,apellido,email,fecha,usuario,contraseña,sexo))
                     con.commit()# confirma la transacción
                 yag = yagmail.SMTP('imacol.misiontic@gmail.com','misiontic')
-                yag.send(to=email, subject='Activa tu cuenta', contents = "Activa tu cuenta dando click <a href='http://localhost:5000/activar?usuario=" + usuario + "'> aqui</a>")
+                yag.send(to=email, subject='Activa tu cuenta', contents = "Activa tu cuenta dando click <a href='https://127.0.0.1:443/activar?usuario=" + usuario + "'> aqui</a>")
+#                yag.send(to=email, subject='Activa tu cuenta', contents = "Activa tu cuenta dando click <a href='http://localhost:5000/activar?usuario=" + usuario + "'> aqui</a>")
                 flash('Por favor revise el correo para activar su cuenta')
 
                 return redirect('/')
@@ -105,7 +106,8 @@ def forgot():
         if registro:
             correo = registro[3]
             yag = yagmail.SMTP('imacol.misiontic@gmail.com','misiontic')
-            yag.send(to=correo, subject='Recuperar contraseña', contents = "Recupera tu contraseña dando click <a href='http://localhost:5000/cambiarcontrasena?usuario=" + usuario + "'> aqui</a>")
+            yag.send(to=correo, subject='Recuperar contraseña', contents = "Recupera tu contraseña dando click <a href='https://127.0.0.1:443/cambiarcontrasena?usuario=" + usuario + "'> aqui</a>")
+#            yag.send(to=correo, subject='Recuperar contraseña', contents = "Recupera tu contraseña dando click <a href='http://localhost:5000/cambiarcontrasena?usuario=" + usuario + "'> aqui</a>")
             flash('Por favor revise el correo para recuperar su contraseña')
             return redirect('/')
 
